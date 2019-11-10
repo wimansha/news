@@ -9,22 +9,60 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    enum State {
+        case loggedOut
+        case loggedIn
     }
     
+    let usernameField = UITextField()
+    let usernameLabel = UILabel()
+    let button = UIButton()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.navigationItem.title = "Profile"
+        configure()
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(){
+        self.view.backgroundColor = .white
+        
+        usernameField.placeholder = "Enter Username"
+        view.addSubview(usernameField)
+        usernameField.translatesAutoresizingMaskIntoConstraints = false
+        
+        usernameLabel.text = "Username"
+        
+        view.addSubview(usernameLabel)
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle("Login", for: .normal)
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .blue
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            usernameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            usernameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            usernameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            usernameLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            usernameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            usernameField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            button.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 10),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            button.heightAnchor.constraint(equalToConstant: 30),
+            ])
+    }
 
 }
