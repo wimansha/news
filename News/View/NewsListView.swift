@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewsListViewDelegate {
+    func didSelect(news: News)
+}
+
 class NewsListView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     enum State {
@@ -20,6 +24,8 @@ class NewsListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     var _rowCount: Float!
     var _cellSpace: CGFloat!
     
+    var delegate : NewsListViewDelegate?
+    
     var newsList = [News]()
     
     let errorView = ErrorView()
@@ -28,12 +34,15 @@ class NewsListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         didSet{
             if state == .NewsLoading{
                 collectionView.refreshControl?.beginRefreshing()
+                collectionView.isHidden = false
                 errorView.isHidden = true
             }else if state == .NewsLoaded{
                 collectionView.refreshControl?.endRefreshing()
+                collectionView.isHidden = false
                 errorView.isHidden = true
             }else if state == .LoadingFailed{
                 collectionView.refreshControl?.endRefreshing()
+                collectionView.isHidden = true
                 errorView.isHidden = false
                 
             }
@@ -92,7 +101,7 @@ class NewsListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .gray
         collectionView.refreshControl = refreshControl
-        collectionView.contentOffset = CGPoint(x: 0, y: -refreshControl.frame.size.height)
+        
 
     }
     
@@ -117,7 +126,8 @@ class NewsListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let selectedNews = newsList[indexPath.item]
+        delegate?.didSelect(news: selectedNews)
     }
     
 }
