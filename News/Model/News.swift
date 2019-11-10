@@ -14,6 +14,7 @@ class News {
     var description : String?
     var author : String?
     var imgUrl : URL?
+    var originlNewsUrl : URL?
     
     init?(jsonData : [String : Any]) {
         guard let title = jsonData["title"] as? String else{
@@ -27,6 +28,10 @@ class News {
         
         if let imgUrlString = jsonData["urlToImage"] as? String{
             self.imgUrl = URL(string: imgUrlString)
+        }
+        
+        if let origNewsUrlString = jsonData["url"] as? String{
+            self.originlNewsUrl = URL(string: origNewsUrlString)
         }
         
         if let author = jsonData["author"] as? String{
