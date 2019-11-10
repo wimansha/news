@@ -26,6 +26,7 @@ class HeadlinesViewController: UIViewController {
     func configure(){
         self.view.backgroundColor = .white
         view.addSubview(headlinesView)
+        headlinesView.delegate = self
         headlinesView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headlinesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -51,4 +52,11 @@ class HeadlinesViewController: UIViewController {
         }
     }
 
+}
+
+extension HeadlinesViewController : NewsListViewDelegate{
+    func didSelect(news: News) {
+        let newsVc = NewsViewController(news: news)
+        self.navigationController?.pushViewController(newsVc, animated: true)
+    }
 }
