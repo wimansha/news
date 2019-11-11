@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121650A92378FFB5009F9FDB /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121650A82378FFB5009F9FDB /* AuthenticationManager.swift */; };
 		122AFA312376C4540070743F /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AFA302376C4540070743F /* NewsCell.swift */; };
 		122AFA332376C46F0070743F /* KeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AFA322376C46F0070743F /* KeywordCell.swift */; };
 		1250764923782BCE006626A6 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1250764823782BCE006626A6 /* NewsViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		121650A82378FFB5009F9FDB /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		122AFA302376C4540070743F /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		122AFA322376C46F0070743F /* KeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
 		1250764823782BCE006626A6 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				127DA59D237698DD002E33CA /* NewsProvider.swift */,
+				121650A82378FFB5009F9FDB /* AuthenticationManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				127DA5A223769A95002E33CA /* KeywordSelectionView.swift in Sources */,
 				122AFA332376C46F0070743F /* KeywordCell.swift in Sources */,
 				122AFA312376C4540070743F /* NewsCell.swift in Sources */,
+				121650A92378FFB5009F9FDB /* AuthenticationManager.swift in Sources */,
 				127DA598237693C6002E33CA /* ProfileViewController.swift in Sources */,
 				127DA5A02376991D002E33CA /* News.swift in Sources */,
 				127DA58223765A63002E33CA /* AppDelegate.swift in Sources */,

@@ -62,8 +62,6 @@ class KeywordSelectionView: UIView, UICollectionViewDataSource, UICollectionView
         let views = ["collectionView":collectionView]
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[collectionView]-0-|", options: [], metrics: nil, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[collectionView]-0-|", options: [], metrics: nil, views: views))
-        
-        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)
     }
     
     //MARK:- UICollectionViewDataSource methods

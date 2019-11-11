@@ -18,7 +18,12 @@ class CustomNewsViewController: UIViewController {
         self.navigationItem.title = "Custom News"
         configure()
         loadNews()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(authenticationStateUpdated(_:)), name: AuthenticationManager.notificationName, object:nil)
+        updateKeywordSelection()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: AuthenticationManager.notificationName, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,10 +69,32 @@ class CustomNewsViewController: UIViewController {
         }
     }
     
+    @objc func authenticationStateUpdated(_ notification: Notification)
+    {
+        updateKeywordSelection()
+    }
+    
+    func updateKeywordSelection(){
+        var indexToSelect = 0
+        if AuthenticationManager.shared.state == .loggedIn{
+            if let preferedKeyword = AuthenticationManager.shared.preferedKeywordForCurrentUser(){
+                if let index = keywordsView.keywords.firstIndex(of: preferedKeyword){
+                    indexToSelect = index
+                }
+            }
+        }
+        let indexPath = IndexPath(item: indexToSelect, section: 0)
+        keywordsView.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        keywordsView.collectionView(keywordsView.collectionView, didSelectItemAt: indexPath)
+    }
+    
 }
 
 extension CustomNewsViewController : KeywordSelectionViewDelegate{
     func didSelect(keyword: String) {
+        if AuthenticationManager.shared.state == .loggedIn{
+            AuthenticationManager.shared.setCurrentUser(preferedKeyword: keyword)
+        }
         loadNews()
     }
 }
